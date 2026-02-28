@@ -8,8 +8,10 @@ use crate::skeleton::workspace::reduce_workspace_by_member;
 use crate::OptimisationProfile;
 use anyhow::Context;
 use cargo_manifest::Product;
+use cargo_metadata::Metadata;
 use fs_err as fs;
 use globwalk::GlobWalkerBuilder;
+use pathdiff::diff_paths;
 use serde::{Deserialize, Serialize};
 use std::path::{Path, PathBuf};
 
