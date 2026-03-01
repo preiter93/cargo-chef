@@ -1,0 +1,66 @@
+{
+  "skeleton": {
+    "manifests": [
+      {
+        "relative_path": "Cargo.toml",
+        "contents": "[workspace]\nmembers = [\"app-one\"]\nresolver = \"2\"\n\n[workspace.dependencies.serde]\nversion = \"1.0\"\nfeatures = [\"derive\"]\n\n[workspace.dependencies.tokio]\nversion = \"1.0\"\nfeatures = [\"rt\", \"rt-multi-thread\", \"macros\"]\n",
+        "targets": []
+      },
+      {
+        "relative_path": "app-one/Cargo.toml",
+        "contents": "[[bin]]\npath = \"src/main.rs\"\nname = \"app-one\"\nplugin = false\nproc-macro = false\nedition = \"2021\"\nrequired-features = []\n\n[package]\nname = \"app-one\"\nedition = \"2021\"\nversion = \"0.0.1\"\n\n[dependencies.lib-shared]\npath = \"../lib-shared\"\n\n[dependencies.serde]\nworkspace = true\n",
+        "targets": [
+          {
+            "path": "src/main.rs",
+            "kind": "Bin",
+            "name": "app-one"
+          }
+        ]
+      },
+      {
+        "relative_path": "app-two/Cargo.toml",
+        "contents": "[[bin]]\npath = \"src/main.rs\"\nname = \"app-two\"\nplugin = false\nproc-macro = false\nedition = \"2021\"\nrequired-features = []\n\n[package]\nname = \"app-two\"\nedition = \"2021\"\nversion = \"0.0.1\"\n\n[dependencies.lib-utils]\npath = \"../lib-utils\"\n\n[dependencies.tokio]\nworkspace = true\n",
+        "targets": [
+          {
+            "path": "src/main.rs",
+            "kind": "Bin",
+            "name": "app-two"
+          }
+        ]
+      },
+      {
+        "relative_path": "lib-shared/Cargo.toml",
+        "contents": "[package]\nname = \"lib-shared\"\nedition = \"2021\"\nversion = \"0.0.1\"\n\n[dependencies.serde]\nworkspace = true\n\n[lib]\npath = \"src/lib.rs\"\nname = \"lib_shared\"\nplugin = false\nproc-macro = false\nedition = \"2021\"\nrequired-features = []\ncrate-type = [\"lib\"]\n",
+        "targets": [
+          {
+            "path": "src/lib.rs",
+            "kind": {
+              "Lib": {
+                "is_proc_macro": false
+              }
+            },
+            "name": "lib_shared"
+          }
+        ]
+      },
+      {
+        "relative_path": "lib-utils/Cargo.toml",
+        "contents": "[package]\nname = \"lib-utils\"\nedition = \"2021\"\nversion = \"0.0.1\"\n\n[dependencies.tokio]\nworkspace = true\n\n[lib]\npath = \"src/lib.rs\"\nname = \"lib_utils\"\nplugin = false\nproc-macro = false\nedition = \"2021\"\nrequired-features = []\ncrate-type = [\"lib\"]\n",
+        "targets": [
+          {
+            "path": "src/lib.rs",
+            "kind": {
+              "Lib": {
+                "is_proc_macro": false
+              }
+            },
+            "name": "lib_utils"
+          }
+        ]
+      }
+    ],
+    "config_file": null,
+    "lock_file": "version = 4\n\n[[package]]\nname = \"app-one\"\nversion = \"0.0.1\"\ndependencies = [\"lib-shared\", \"serde\"]\n\n[[package]]\nname = \"app-two\"\nversion = \"0.0.1\"\ndependencies = [\"lib-utils\", \"tokio\"]\n\n[[package]]\nname = \"lib-shared\"\nversion = \"0.0.1\"\ndependencies = [\"serde\"]\n\n[[package]]\nname = \"lib-utils\"\nversion = \"0.0.1\"\ndependencies = [\"tokio\"]\n\n[[package]]\nname = \"pin-project-lite\"\nversion = \"0.2.17\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"a89322df9ebe1c1578d689c92318e070967d1042b512afbe49518723f4e6d5cd\"\n\n[[package]]\nname = \"proc-macro2\"\nversion = \"1.0.106\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"8fd00f0bb2e90d81d1044c2b32617f68fcb9fa3bb7640c23e9c748e53fb30934\"\ndependencies = [\"unicode-ident\"]\n\n[[package]]\nname = \"quote\"\nversion = \"1.0.44\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"21b2ebcf727b7760c461f091f9f0f539b77b8e87f2fd88131e7f1b433b3cece4\"\ndependencies = [\"proc-macro2\"]\n\n[[package]]\nname = \"serde\"\nversion = \"1.0.228\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e\"\ndependencies = [\"serde_core\", \"serde_derive\"]\n\n[[package]]\nname = \"serde_core\"\nversion = \"1.0.228\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"41d385c7d4ca58e59fc732af25c3983b67ac852c1a25000afe1175de458b67ad\"\ndependencies = [\"serde_derive\"]\n\n[[package]]\nname = \"serde_derive\"\nversion = \"1.0.228\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"d540f220d3187173da220f885ab66608367b6574e925011a9353e4badda91d79\"\ndependencies = [\"proc-macro2\", \"quote\", \"syn\"]\n\n[[package]]\nname = \"syn\"\nversion = \"2.0.117\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"e665b8803e7b1d2a727f4023456bbbbe74da67099c585258af0ad9c5013b9b99\"\ndependencies = [\"proc-macro2\", \"quote\", \"unicode-ident\"]\n\n[[package]]\nname = \"tokio\"\nversion = \"1.49.0\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"72a2903cd7736441aac9df9d7688bd0ce48edccaadf181c3b90be801e81d3d86\"\ndependencies = [\"pin-project-lite\", \"tokio-macros\"]\n\n[[package]]\nname = \"tokio-macros\"\nversion = \"2.6.0\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"af407857209536a95c8e56f8231ef2c2e2aff839b22e07a1ffcbc617e9db9fa5\"\ndependencies = [\"proc-macro2\", \"quote\", \"syn\"]\n\n[[package]]\nname = \"unicode-ident\"\nversion = \"1.0.24\"\nsource = \"registry+https://github.com/rust-lang/crates.io-index\"\nchecksum = \"e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75\"\n",
+    "rust_toolchain_file": null
+  }
+}

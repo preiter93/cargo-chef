@@ -1,0 +1,12 @@
+[package]
+name = "app-one"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "app-one"
+path = "src/main.rs"
+
+[dependencies]
+serde = { workspace = true }
+lib-shared = { path = "../lib-shared" }

@@ -1,0 +1,12 @@
+[package]
+name = "app-two"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "app-two"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { workspace = true }
+lib-utils = { path = "../lib-utils" }
